@@ -1,14 +1,36 @@
+"use client";
+import useCart from "@/store/store";
 import { Card } from "@tremor/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface Props {
   product: Product;
 }
 
 const ProductItem = ({ product }: Props) => {
+  const router = useRouter();
+  const { cart, addCartItem } = useCart((state) => state);
+
+  const cartItem: CartItem = {
+    ...product,
+    quantity: 1,
+  };
+
+  const isItemExist = cart.find((item) => item.id === cartItem.id);
+  const handleAddCartItem = () => {
+    console.log("adding...");
+    if (isItemExist) return toast.error("Item already exist in your Cart");
+    addCartItem(cartItem);
+  };
+
   return (
     <div className="mb-5 block rounded-lg border border-gray-200 shadow-md w-full md:max-w-xs">
-      <div className="relative w-full md:max-w-xs h-[200px] rounded-lg">
+      <div
+        className="relative w-full md:max-w-xs h-[200px] rounded-lg cursor-pointer"
+        onClick={() => router.push(`/product/${product.slug}`)}
+      >
         <Image
           src={product.image}
           alt={product.name}
@@ -21,7 +43,12 @@ const ProductItem = ({ product }: Props) => {
         <h2 className="text-xl font-semibold">{product.name}</h2>
         <p>{product.brand}</p>
         <p>${product.price}</p>
-        <button type="button" className="primary-button">
+        <button
+          onClick={handleAddCartItem}
+          type="button"
+          className="primary-button disabled:bg-gray-300"
+          disabled={Boolean(isItemExist)}
+        >
           Add to Cart
         </button>
       </div>

@@ -1,5 +1,7 @@
+import AuthProvider from "./components/AuthProvider";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import ToastProvider from "./components/ToastProvider";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -18,9 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <ToastProvider>
+          <AuthProvider>
+            <Navbar />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </AuthProvider>
+        </ToastProvider>
       </body>
     </html>
   );

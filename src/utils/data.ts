@@ -5,18 +5,21 @@ const data = {
     {
       name: "John",
       email: "admin@example.com",
-      password: bcrypt.hashSync("123456", 10),
+      //password: bcrypt.hashSync("123456", 10),
+      password: "123",
       isAdmin: true,
     },
     {
       name: "Jane",
       email: "user@example.com",
-      password: bcrypt.hashSync("123456", 10),
+      //password: bcrypt.hashSync("123456", 10),
+      password: "123",
       isAdmin: false,
     },
   ],
   products: [
     {
+      id: "001",
       name: "Free Shirt",
       slug: "free-shirt",
       category: "Shirts",
@@ -31,6 +34,7 @@ const data = {
       banner: "/images/banner1.jpg",
     },
     {
+      id: "002",
       name: "Fit Shirt",
       slug: "fit-shirt",
       category: "Shirts",
@@ -45,6 +49,7 @@ const data = {
       banner: "/images/banner2.jpg",
     },
     {
+      id: "003",
       name: "Slim Shirt",
       slug: "slim-shirt",
       category: "Shirts",
@@ -57,6 +62,7 @@ const data = {
       description: "A popular shirt",
     },
     {
+      id: "004",
       name: "Golf Pants",
       slug: "golf-pants",
       category: "Pants",
@@ -69,6 +75,7 @@ const data = {
       description: "Smart looking pants",
     },
     {
+      id: "005",
       name: "Fit Pants",
       slug: "fit-pants",
       category: "Pants",
@@ -81,6 +88,7 @@ const data = {
       description: "A popular pants",
     },
     {
+      id: "006",
       name: "Classic Pants",
       slug: "classic-pants",
       category: "Pants",
