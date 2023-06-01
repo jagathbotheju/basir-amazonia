@@ -1,24 +1,19 @@
 "use client";
-import useCart from "@/store/store";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import UserMenu from "./UserMenu";
+import { PuffLoader } from "react-spinners";
 
 const AuthButton = () => {
   const session = useSession();
-  const router = useRouter();
-  const { resetCart } = useCart((state) => state);
-
-  const handleSignOut = () => {
-    signOut();
-    router.push("/");
-    resetCart();
-  };
 
   if (session.status === "loading") {
     return (
       <>
-        <div className="animate-spin rounded-full w-8 h-8 absolute right-3 top-3"></div>
+        <div className="bg-yellow-500">
+          <PuffLoader size={10} loading={true} />
+        </div>
       </>
     );
   }
@@ -27,11 +22,10 @@ const AuthButton = () => {
     <>
       {session.status === "authenticated" ? (
         <>
-          <div className="flex gap-4 ml-auto">
+          <div className="flex gap-4 ml-auto items-center">
             <p className="text-sky-600">{session.data?.user?.name}</p>
-            <button onClick={handleSignOut} className="text-red-600">
-              <FiLogOut className="text-xl" />
-            </button>
+
+            <UserMenu />
           </div>
         </>
       ) : (

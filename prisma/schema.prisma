@@ -19,6 +19,7 @@ model User {
   password      String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  role          Role     @default(USER)
 
   accounts Account[]
 }
@@ -41,4 +42,9 @@ model Account {
 
   //combination of this should be unique
   @@unique([provider, providerAccountId])
+}
+
+enum Role {
+  ADMIN
+  USER
 }

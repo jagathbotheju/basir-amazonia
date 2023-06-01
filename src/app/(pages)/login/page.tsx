@@ -42,6 +42,7 @@ const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const redirectUrl = searchParams.get("callbackUrl") ?? "/";
   console.log(`callback url ${searchParams.get("callbackUrl")}`);
 
   const {
@@ -69,7 +70,7 @@ const LoginPage = () => {
       .then((callback) => {
         if (callback?.ok && !callback?.error) {
           toast.success(`You are Logged In`);
-          router.push(`${searchParams.get("callbackUrl")}`);
+          router.push(redirectUrl);
         }
         if (callback?.error) {
           toast.error(callback.error);
