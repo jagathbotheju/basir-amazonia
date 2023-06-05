@@ -29,7 +29,7 @@ const ProductItem = ({ product }: Props) => {
     <div className="mb-5 block rounded-lg border border-gray-200 shadow-md w-full md:max-w-xs">
       <div
         className="relative w-full md:max-w-xs h-[200px] rounded-lg cursor-pointer"
-        onClick={() => router.push(`/product/${product.slug}`)}
+        onClick={() => router.push(`/product/${product.id}`)}
       >
         <Image
           src={product.image}

@@ -7,6 +7,8 @@ const initialState: State = {
   cart: [],
   totalPrice: 0,
   error: null,
+  shippingAddress: null,
+  paymentMethod: "",
 };
 
 const useCart = create<State & Actions>()(
@@ -21,6 +23,14 @@ const useCart = create<State & Actions>()(
 
       resetError: () => {
         set({ error: null });
+      },
+
+      addPaymentMethod: (paymentMethod: string) => {
+        set({ paymentMethod });
+      },
+
+      addShippingAddress: (address: Address) => {
+        set({ shippingAddress: address });
       },
 
       addQuantity: (cartItem: CartItem) => {

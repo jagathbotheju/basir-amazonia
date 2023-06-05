@@ -1,5 +1,5 @@
 type Product = {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   category: string;
@@ -21,6 +21,16 @@ type State = {
   cart: CartItem[];
   totalPrice: number;
   error: String | null;
+  shippingAddress: Address | null;
+  paymentMethod: string;
+};
+
+type Address = {
+  fullName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
 };
 
 type Actions = {
@@ -30,4 +40,6 @@ type Actions = {
   removeCartItem: (cartItem: CartItem) => void;
   addQuantity: (cartItem: CartItem) => void;
   removeQuantity: (cartItem: CartItem) => void;
+  addShippingAddress: (address) => void;
+  addPaymentMethod: (payment) => void;
 };

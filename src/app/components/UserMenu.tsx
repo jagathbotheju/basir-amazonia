@@ -16,8 +16,8 @@ const UserMenu = () => {
   }, []);
 
   const handleSignOut = () => {
-    signOut();
-    router.push("/");
+    signOut({ callbackUrl: "/" });
+    //router.push("/");
     resetCart();
     toggleOpen();
   };

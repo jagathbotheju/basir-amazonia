@@ -74,6 +74,7 @@ const LoginPage = () => {
         }
         if (callback?.error) {
           toast.error(callback.error);
+          console.log(callback.error);
         }
       })
       .catch((error) => {
