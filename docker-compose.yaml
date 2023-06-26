@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  postgres-amazona:
+    container_name: postgres-amazona-container
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_amazona_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_DB=amazonaDB
+      - POSTGRES_USER=jagath
+      - POSTGRES_PASSWORD=Boine747
+
+volumes:
+  postgres_amazona_data:

@@ -8,6 +8,6 @@ export async function getProducts() {
     return products;
   } catch (error) {
     console.log(error);
-    throw new Error("Internal Server Error");
+    return null;
   }
 }

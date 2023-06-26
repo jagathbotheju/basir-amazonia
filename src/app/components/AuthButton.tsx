@@ -11,8 +11,8 @@ const AuthButton = () => {
   if (session.status === "loading") {
     return (
       <>
-        <div className="bg-yellow-500">
-          <PuffLoader size={10} loading={true} />
+        <div className="text-yellow-500">
+          <PuffLoader size={40} />
         </div>
       </>
     );

@@ -46,7 +46,7 @@ const CartPage = () => {
                   <tr key={item.id} className="border-b">
                     <td>
                       <Link
-                        href={`/product/${item.slug}`}
+                        href={`/product/${item.id}`}
                         className="flex items-center gap-4"
                       >
                         <div className="relative w-[50px] h-[50px] rounded">
@@ -85,7 +85,7 @@ const CartPage = () => {
           </div>
 
           {/* summary */}
-          <div className="w-full p-5 shadow-lg">
+          <div className="w-full p-5 shadow-lg bg-slate-700 rounded-md">
             <h3 className="text-xl font-semibold text-center">
               Sub Total ({cart.reduce((a, c) => a + c.quantity, 0)}) : ${" "}
               {cart.reduce((a, c) => a + c.price * c.quantity, 0)}

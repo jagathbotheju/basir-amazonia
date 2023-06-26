@@ -1,6 +1,7 @@
 "use client";
 import CheckoutWizard from "@/app/components/CheckoutWizard";
 import useCart from "@/store/store";
+import { ShippingAddress } from "@prisma/client";
 import { Metadata } from "next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -30,7 +31,8 @@ const ShippingPage = () => {
   });
 
   const submitHandler: SubmitHandler<FieldValues> = (data) => {
-    addShippingAddress(data);
+    const address = data as ShippingAddress;
+    addShippingAddress(address);
     router.push("/payment");
   };
 
@@ -51,7 +53,7 @@ const ShippingPage = () => {
           <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
-            className="w-full block form-input rounded-md shadow-sm border"
+            className="w-full block form-input rounded-md shadow-sm border dark:bg-slate-800"
             id="fullName"
             placeholder=""
             autoFocus
@@ -71,7 +73,7 @@ const ShippingPage = () => {
           <label htmlFor="address">Address</label>
           <input
             type="text"
-            className="w-full block form-input rounded-md shadow-sm border"
+            className="w-full block form-input rounded-md shadow-sm border dark:bg-slate-800"
             id="address"
             autoFocus
             {...register("address", {
@@ -91,7 +93,7 @@ const ShippingPage = () => {
             <label htmlFor="city">City</label>
             <input
               type="text"
-              className="w-full block form-input rounded-md shadow-sm border"
+              className="w-full block form-input rounded-md shadow-sm border dark:bg-slate-800"
               id="city"
               autoFocus
               {...register("city", {
@@ -110,7 +112,7 @@ const ShippingPage = () => {
             <label htmlFor="postalCode">Postal Code</label>
             <input
               type="text"
-              className="w-full block form-input rounded-md border"
+              className="w-full block form-input rounded-md border dark:bg-slate-800"
               id="postalCode"
               autoFocus
               {...register("postalCode", {
@@ -130,7 +132,7 @@ const ShippingPage = () => {
           <label htmlFor="country">Country</label>
           <input
             type="text"
-            className="w-full block form-input rounded-md border"
+            className="w-full block form-input rounded-md border dark:bg-slate-800"
             id="country"
             autoFocus
             {...register("country", {

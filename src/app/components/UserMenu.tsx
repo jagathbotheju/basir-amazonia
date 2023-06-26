@@ -37,7 +37,10 @@ const UserMenu = () => {
           <div className="flex flex-col cursor-pointer">
             <>
               <UserMenuItem onClick={() => {}} label="Profile" />
-              <UserMenuItem onClick={() => {}} label="Order History" />
+              <UserMenuItem
+                onClick={() => router.push("/order/history")}
+                label="Order History"
+              />
               <UserMenuItem onClick={handleSignOut} label="Logout" />
             </>
           </div>

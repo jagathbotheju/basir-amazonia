@@ -10,6 +10,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Order {
+  id            Int       @id @default(autoincrement())
+  paymentMethod String
+  itemsPrice    Float
+  shippingPrice Float
+  taxPrice      Float
+  totalPrice    Float
+  isPaid        Boolean   @default(false)
+  paidAt        DateTime?
+  isDelivered   Boolean   @default(false)
+  deliveredAt   DateTime?
+
+  products   Product[]
+  orderItems OrderItem[]
+
+  shippingId      Int             @unique
+  shippingAddress ShippingAddress @relation(fields: [shippingId], references: [id])
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+}
+
+model OrderItem {
+  id           Int    @id @default(autoincrement())
+  name         String
+  slug         String
+  category     String
+  image        String
+  price        Float
+  brand        String
+  rating       Float
+  numReviews   Int
+  countInStock Int
+  description  String
+  quantity     Int
+
+  orderId Int?
+  order   Order? @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model ShippingAddress {
+  id         Int    @id @default(autoincrement())
+  fullName   String
+  address    String
+  city       String
+  postalCode String
+  country    String
+
+  order Order?
+}
+
 model Product {
   id           Int    @id @default(autoincrement())
   name         String
@@ -22,6 +73,9 @@ model Product {
   numReviews   Int
   countInStock Int
   description  String
+
+  orderId Int?
+  order   Order? @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -36,6 +90,7 @@ model User {
   role          Role     @default(USER)
 
   accounts Account[]
+  order    Order[]
 }
 
 model Account {

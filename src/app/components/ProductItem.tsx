@@ -3,6 +3,7 @@ import useCart from "@/store/store";
 import { Card } from "@tremor/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -12,18 +13,25 @@ interface Props {
 const ProductItem = ({ product }: Props) => {
   const router = useRouter();
   const { cart, addCartItem } = useCart((state) => state);
+  const [mounted, setMounted] = useState(false);
 
   const cartItem: CartItem = {
     ...product,
     quantity: 1,
   };
 
-  const isItemExist = cart.find((item) => item.id === cartItem.id);
+  const isItemExist = mounted
+    ? cart.find((item) => item.id === cartItem.id)
+    : false;
   const handleAddCartItem = () => {
     console.log("adding...");
     if (isItemExist) return toast.error("Item already exist in your Cart");
     addCartItem(cartItem);
   };
+
+  useEffect(() => {
+    if (!mounted) setMounted(true);
+  }, [mounted]);
 
   return (
     <div className="mb-5 block rounded-lg border border-gray-200 shadow-md w-full md:max-w-xs">
@@ -36,6 +44,9 @@ const ProductItem = ({ product }: Props) => {
           alt={product.name}
           className="object-cover rounded shadow object-top"
           fill
+          placeholder="blur"
+          blurDataURL={product.image}
+          priority={true}
         />
       </div>
 

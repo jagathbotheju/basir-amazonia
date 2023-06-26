@@ -43,3 +43,20 @@ type Actions = {
   addShippingAddress: (address) => void;
   addPaymentMethod: (payment) => void;
 };
+
+type AuthUser = {
+  accessToken: string;
+  createdAt: string;
+  email: string;
+  emailVerified: boolean;
+  exp: string;
+  iat: string;
+  id: number;
+  image: string;
+  jti: string;
+  name: string;
+  picture: string;
+  role: string;
+  sub: string;
+  updatedAt: string;
+};
